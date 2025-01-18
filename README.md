@@ -4,11 +4,13 @@ Proyek untuk memvisualisasikan data sensor suhu dan kelembapan menggunakan Raspb
 
 ## 📝 Deskripsi
 
-Proyek ini memanfaatkan Raspberry Pi model 4 untuk membaca data suhu dan kelembapan dari sensor DHT11. Data tersebut kemudian dikirimkan ke platform database InfluxDB Cloud dan divisualisasikan menggunakan dashboard Grafana Cloud.
+Perkembangan teknologi saat ini telah berkembang dengan pesat di berbagai bidang, salah satunya adalah bidang monitoring. Dengan kemajuan teknologi, hambatan jarak dan waktu kini dapat diatasi melalui Internet of Things (IoT). Salah satu perangkat yang mendukung teknologi IoT adalah Raspberry Pi, sebuah single board computer (SBC) berbasis sistem operasi Linux yang sangat populer dan banyak digunakan.
+
+Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu dan kelembapan dari sensor DHT11, lalu mengirimkannya ke platform database InfluxDB Cloud, yang selanjutnya akan dikoneksikan dengan platform dashboard Grafana Cloud.
 
 ### Komponen Utama:
-- **Raspberry Pi**: Single board computer berbasis Linux untuk membaca data sensor
-- **DHT11**: Sensor untuk mengukur suhu dan kelembapan
+- **Raspberry Pi**: Single board computer berbasis Linux
+- **DHT11**: Sensor gabungan yang mampu mengukur suhu dan kelembapan relatif
 - **InfluxDB Cloud**: Database time-series untuk penyimpanan data
 - **Grafana Cloud**: Platform visualisasi data interaktif
 
@@ -19,140 +21,118 @@ Proyek ini memanfaatkan Raspberry Pi model 4 untuk membaca data suhu dan kelemba
 | 1 | Raspberry Pi 4 | 1 buah |
 | 2 | Sensor suhu DHT11 | 1 buah |
 | 3 | InfluxDB Cloud | 1 akun |
-| 4 | Grafana Cloud | 1 akun |
+| 4 | Grafana cloud | 1 akun |
 | 5 | Kabel jumper | Secukupnya |
 
-## 📋 Koneksi Pin
+## 🔧 Langkah-Langkah Implementasi
 
+### A. Koneksi Sensor dan Raspberry Pi
+
+#### Tabel Koneksi
 | Pin DHT11 | Pin Raspberry Pi |
 |-----------|-----------------|
 | VCC+ | 3.3V |
 | out | GPIO4 |
 | GND- | GND |
 
-## 🔧 Langkah-Langkah Implementasi
-
-### A. Koneksi Sensor dan Raspberry Pi
-1. Pastikan Raspberry Pi dalam keadaan OFF
-2. Rangkai sensor sesuai tabel koneksi pin di atas
+1. Pastikan Raspberry Pi dalam keadaan padam (OFF)
+2. Rangkai sensor sesuai tabel koneksi di atas
 3. Periksa kembali rangkaian sebelum menyalakan Raspberry Pi
 
-### B. Setup InfluxDB Cloud
+### B. Membuat Akun InfluxDB
 1. Buka https://cloud.2.influxdata.com/signup
-2. Sign up menggunakan akun Google
-3. Buat company dan organization
-4. Pilih storage provider (Amazon Web Services)
-5. Pilih Free Plan
-6. Buat bucket baru:
-   - Pilih menu Buckets
-   - Klik CREATE BUCKET
-   - Masukkan nama bucket (misal: monitor_suhu)
-   - Set Data Retention (misal: 24 hours)
-7. Catat token InfluxDB untuk digunakan nanti
+2. Pilih SIGN UP, kemudian pilih Google
+3. Masuk dengan alamat email dan password Google
+4. Buat nama company dan organization
+5. Pilih storage provider pada Amazon Web Services
+6. Checklist Agreement dan pilih CONTINUE
+7. Pilih opsi Free plan dan pilih KEEP
 
-### C. Setup Grafana Cloud
+### C. Membuat Akun Grafana Cloud
 1. Buka https://grafana.com/auth/sign-up/create-user
-2. Sign up menggunakan akun Google
-3. Buat stack Grafana baru
+2. Pilih ikon akun Google untuk Sign Up
+3. Masuk dengan alamat email dan password Google
+4. Buat stack Grafana baru
 
-### D. Persiapan Development Environment
-1. Install PuTTY
-   ```bash
-   # Download dari:
-   https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-   ```
+### D. Pembuatan Virtual Environment
 
-2. Install WinSCP
-   ```bash
-   # Download dari:
-   https://winscp.net/eng/download.php
-   ```
+#### 1. Setup PuTTY
+1. Download dan install PuTTY dari https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+2. Jalankan aplikasi PuTTY
+3. Masukkan IP Raspberry Pi
+4. Pilih SSH untuk koneksi
+5. Masukkan username dan password Raspberry Pi
 
-3. Koneksikan ke Raspberry Pi via PuTTY:
-   - Masukkan IP Raspberry Pi
-   - Pilih SSH
-   - Login dengan username dan password Raspberry Pi
-
-### E. Setup Virtual Environment
+#### 2. Update Sistem
 ```bash
-# Update sistem
 sudo apt update
 sudo apt upgrade -y
+```
 
-# Cek dan install Python
+#### 3. Cek dan Install Python
+```bash
 python3 --version
-sudo apt install python3 python3-pip python3-venv -y
+sudo apt install python3 -y
+sudo apt install python3-pip -y
+sudo apt install python3-venv -y
+```
 
-# Buat struktur folder
+#### 4. Buat Struktur Folder
+```bash
 cd Documents
 mkdir arsikom2
 cd arsikom2
 mkdir sensor2
 cd sensor2
+```
 
-# Buat dan aktifkan virtual environment
+#### 5. Setup Virtual Environment
+```bash
 python3 -m venv .
 source bin/activate
 ```
 
-### F. Instalasi Library dan Dependencies
+### E. Membuat Bucket dan Token InfluxDB
+
+1. Pada laman utama InfluxDB:
+   - Pilih menu Buckets
+   - Pilih CREATE BUCKET
+   - Masukkan nama bucket (misal: monitor_suhu)
+   - Set Data Retention (misal: 24 hours)
+   - Pilih CREATE
+
+2. Tambahkan sumber data:
+   - Pilih ADD DATA
+   - Pilih Client Library
+   - Pilih Python
+   - Ikuti tahapan Install Dependencies
+
+3. Dapatkan dan simpan token:
+   - Pilih tahap Get Token
+   - Salin token dan simpan di text editor
+   - Token hanya muncul satu kali
+
+### F. Menginstal Library dan Source Code
+
+#### 1. Install Library Sensor
 ```bash
-# Install library sensor DHT
 python3 -m pip install adafruit-circuitpython-dht
+```
 
-# Install InfluxDB client
+#### 2. Install Dependencies InfluxDB
+```bash
 pip install influxdb3-python
-
-# Install pandas
 pip install pandas
 ```
 
-### G. Transfer dan Konfigurasi Kode
-1. Buat file `read_datadht.py` dengan kode program di bawah
-2. Transfer file ke Raspberry Pi menggunakan WinSCP:
-   - Koneksikan ke Raspberry Pi
-   - Navigasi ke folder virtual environment
-   - Upload file python
+#### 3. Setup WinSCP
+1. Download dan install WinSCP dari https://winscp.net/eng/download.php
+2. Buka WinSCP dan koneksikan ke Raspberry Pi:
+   - Masukkan IP Raspberry Pi
+   - Masukkan username dan password
+3. Transfer file python ke folder virtual environment
 
-3. Export token InfluxDB:
-```bash
-export INFLUXDB_TOKEN="your-token-here"
-```
-
-### H. Setup Dashboard InfluxDB
-1. Di InfluxDB Cloud, buka Data Explorer
-2. Pilih bucket yang telah dibuat
-3. Pilih measurement "datasuhu"
-4. Centang field temperature dan humidity
-5. Run query untuk memastikan data masuk
-
-### I. Konfigurasi Grafana Dashboard
-1. Di Grafana Cloud:
-   - Buka Connections
-   - Add new connection
-   - Pilih InfluxDB
-
-2. Konfigurasi data source:
-   - Name: Sesuai keinginan
-   - Query Language: SQL
-   - URL: URL InfluxDB Cloud
-   - Database: Nama bucket
-   - Token: Token InfluxDB
-   
-3. Buat dashboard baru:
-   - Add visualization
-   - Pilih data source InfluxDB
-   - Paste query SQL dari InfluxDB
-   - Set refresh rate ke 5 detik
-   - Set time range ke 30 menit
-
-4. Konfigurasi visualisasi:
-   - Buat Gauge untuk suhu
-   - Buat Gauge untuk kelembapan
-   - Buat Time-series graph
-   - Sesuaikan threshold warna
-
-## 💻 Kode Program
+### G. Kode Program
 
 ```python
 import os
@@ -210,27 +190,65 @@ except KeyboardInterrupt:
     print("Program dihentikan.")
 ```
 
+### H. Menerima Data pada InfluxDB
+
+1. Buka laman Buckets di InfluxDB
+2. Pilih bucket yang telah dibuat
+3. Pilih measurement "datasuhu"
+4. Checklist field humidity dan temperature
+5. Pastikan query SQL tampil tanpa error
+6. Pilih RUN untuk melihat data masuk
+
+### I. Membuat Koneksi dan Dashboard pada Grafana Cloud
+
+1. Setup koneksi:
+   - Pilih Add new connection
+   - Pilih InfluxDB
+   - Pilih Add new data source
+
+2. Konfigurasi data source:
+   - Name: Sesuai keinginan
+   - Query Language: SQL
+   - URL: URL InfluxDB Cloud
+   - Database: Nama bucket
+   - Token: Token InfluxDB
+
+3. Buat dashboard:
+   - Pilih New dashboard
+   - Add visualization
+   - Pilih data source yang dibuat
+   - Paste query SQL dari InfluxDB
+   - Set auto refresh 5 detik
+   - Set time range 30 menit
+
+4. Konfigurasi visualisasi:
+   - Ubah ke mode gauge
+   - Set nilai min 0 dan max 100
+   - Tambahkan judul dan deskripsi panel
+   - Save dashboard
+
 ## 📊 Konfigurasi Visualisasi
 
 ### Dashboard Grafana
-- **Gauge Chart Suhu**:
-  - 0-10°C: Biru
-  - 10-20°C: Biru Muda
-  - 20-25°C: Hijau
-  - 25-30°C: Kuning
-  - 30-38°C: Jingga
-  - >40°C: Merah
+1. Gauge Chart untuk Suhu:
+   - 0-10°C: Biru
+   - 10-20°C: Biru Muda
+   - 20-25°C: Hijau
+   - 25-30°C: Kuning
+   - 30-38°C: Jingga
+   - >40°C: Merah
 
-- **Gauge Chart Kelembapan**:
-  - <25%: Hijau (kondisi kering)
-  - 25-50%: Merah (kondisi optimal)
-  - 50-75%: Kuning (kondisi lembap)
-  - 75-100%: Biru (kondisi sangat lembap)
+2. Gauge Chart untuk Kelembapan:
+   - <25%: Hijau (kondisi kering)
+   - 25-50%: Merah (kondisi optimal)
+   - 50-75%: Kuning (kondisi lembap)
+   - 75-100%: Biru (kondisi sangat lembap)
 
-- **Time-Series Graph**: 
-  - Menampilkan tren perubahan suhu dan kelembapan
-  - Auto refresh setiap 5 detik
-  - Range data 30 menit
+3. Time-Series Graph:
+   - Menampilkan perubahan suhu dan kelembapan dari waktu ke waktu
+   - Memudahkan pengguna untuk melihat tren data
+   - Auto refresh setiap 5 detik
+   - Range data 30 menit
 
 ## 🔍 Troubleshooting
 
@@ -254,8 +272,12 @@ except KeyboardInterrupt:
 - [Random Nerd Tutorials - DHT11/DHT22 with Raspberry Pi](https://randomnerdtutorials.com/raspberry-pi-dht11-dht22-python/)
 - [InfluxDB Cloud Documentation](https://cloud.2.influxdata.com/signup)
 - [Grafana Cloud Documentation](https://grafana.com/)
+- [PuTTY Download](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+- [WinSCP Download](https://winscp.net/eng/download.php)
 - Dwi, A., Suaidah, & Prayogo, A. (2021). Teknologi Pengendali Perangkat Elektronik Menggunakan Sensor Suara. *Jurnal Teknologi dan Sistem Tertanam*, 2(2), 46-59.
 - Friadi, R., Junadhi, J. (2019). Sistem Kontrol Intensitas Cahaya, Suhu dan Kelembaban Udara Pada Greenhouse Berbasis Raspberry PI. *JTIS*, 2(1), 30-36.
+- Putra, D. (2023, 9 Februari). Get to know InfluxDB is? Complete explanation.
+- Jagoan Hosting. (2024, 1 Oktober). Apa itu Grafana? Fitur, Fungsi dan Kelebihannya.
 
 ## 👥 Kontributor
 
