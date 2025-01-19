@@ -4,8 +4,6 @@ Proyek untuk memvisualisasikan data sensor suhu dan kelembapan menggunakan Raspb
 
 ## 📝 Deskripsi
 
-Perkembangan teknologi saat ini telah berkembang dengan pesat di berbagai bidang, salah satunya adalah bidang monitoring. Dengan kemajuan teknologi, hambatan jarak dan waktu kini dapat diatasi melalui Internet of Things (IoT). Salah satu perangkat yang mendukung teknologi IoT adalah Raspberry Pi, sebuah single board computer (SBC) berbasis sistem operasi Linux yang sangat populer dan banyak digunakan.
-
 Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu dan kelembapan dari sensor DHT11, lalu mengirimkannya ke platform database InfluxDB Cloud, yang selanjutnya akan dikoneksikan dengan platform dashboard Grafana Cloud.
 
 ### Komponen Utama:
@@ -47,10 +45,10 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
    ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images1.png)
 
 2. Pilih SIGN UP, kemudian pilih Google
+3. Masuk dengan alamat email dan password Google
 
    ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images2.png)
 
-3. Masuk dengan alamat email dan password Google
 4. Buat nama company dan organization
 
    ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images3.png)
@@ -82,9 +80,9 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 
    ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images8.png)
 
-4. Pilih SSH untuk koneksi
+4. Pilih SSH untuk koneksi lalu Open
 
-5. Masukkan username dan password Raspberry Pi
+5. Masukkan username dan password Raspberry Pi 
 
    ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images9.png)
 
@@ -105,10 +103,10 @@ sudo apt install python3-venv -y
 #### 4. Buat Struktur Folder
 ```bash
 cd Documents
-mkdir arsikom2
-cd arsikom2
-mkdir sensor2
-cd sensor2
+mkdir arsikom3
+cd arsikom3
+mkdir sensor3
+cd sensor3
 ```
 
 #### 5. Setup Virtual Environment
@@ -141,7 +139,7 @@ source bin/activate
 
      ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images13.png)
 
-   - Pilih Python
+   - Pilih Client Python
    - Ikuti tahapan Install Dependencies
 
 3. Dapatkan dan simpan token:
@@ -149,7 +147,7 @@ source bin/activate
 
      ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images14.png)
 
-   - Salin token dan simpan di text editor dan PuTTY(token hanya muncul satu kali)
+   - Salin token dan simpan di text editor(Notepad) dan paste pada PuTTY(token hanya muncul satu kali)
 
 ### F. Menginstal Library dan Source Code
 
@@ -191,11 +189,13 @@ import adafruit_dht
 
 # Konfigurasi InfluxDB
 token = os.environ.get("INFLUXDB_TOKEN")
+# Nama Organization
 org = "JTE"
 host = "https://us-east-1-1.aws.cloud2.influxdata.com"
 
 # Inisialisasi klien
 client = InfluxDBClient3(host=host, token=token, org=org)
+# Nama Bucket
 database = "monitor_suhu"
 
 # Inisialisasi sensor DHT11
@@ -272,12 +272,12 @@ except KeyboardInterrupt:
      ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images21.png)
 
    - Query Language: SQL
-   - URL: URL InfluxDB Cloud
+   - URL: URL InfluxDB Cloud (https://us-east-1-1.aws.cloud2.influxdata.com/)
 
      ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images22.png)
 
    - Database: Nama bucket
-   - Token: Token InfluxDB
+   - Token: Token InfluxDB (hanya kode unik)
 
 3. Buat dashboard:
    - Pilih New dashboard
@@ -285,7 +285,7 @@ except KeyboardInterrupt:
      ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images23.png)
 
    - Add visualization
-   - Pilih data source yang dibuat
+   - Pilih data source yang telah dibuat
 
      ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images24.png)
 
