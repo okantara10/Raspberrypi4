@@ -370,8 +370,8 @@ except KeyboardInterrupt:
 
 ## 👥 Kontributor
 
-- Gede Agung Okantara (2315344011)
-- I Made Wiranata Kusuma Putra (2315344005)
+- Gede Agung Okantara
+- I Made Wiranata Kusuma Putra 
 
 ## 🏫 Institusi
 
