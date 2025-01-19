@@ -35,6 +35,8 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 | out | GPIO4 |
 | GND- | GND |
 
+![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/koneksi.png)
+
 1. Pastikan Raspberry Pi dalam keadaan padam (OFF)
 2. Rangkai sensor sesuai tabel koneksi di atas
 3. Periksa kembali rangkaian sebelum menyalakan Raspberry Pi
