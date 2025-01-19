@@ -50,10 +50,10 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 
 ### C. Membuat Akun Grafana Cloud
 1. Buka https://grafana.com/auth/sign-up/create-user
-(images/images1.png)
-3. Pilih ikon akun Google untuk Sign Up
-4. Masuk dengan alamat email dan password Google
-5. Buat stack Grafana baru
+https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images1.png
+2. Pilih ikon akun Google untuk Sign Up
+3. Masuk dengan alamat email dan password Google
+4. Buat stack Grafana baru
 
 ### D. Pembuatan Virtual Environment
 
