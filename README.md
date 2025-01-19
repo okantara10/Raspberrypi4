@@ -44,21 +44,21 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 ### B. Membuat Akun InfluxDB
 1. Buka https://cloud.2.influxdata.com/signup
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images1.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images1.png)
 
 2. Pilih SIGN UP, kemudian pilih Google
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images2.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images2.png)
 
 3. Masuk dengan alamat email dan password Google
 4. Buat nama company dan organization
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images3.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images3.png)
 
 5. Checklist Agreement dan pilih CONTINUE
 6. Pilih storage provider pada Amazon Web Services
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images4.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images4.png)
 
 7. Pilih opsi Free plan dan pilih KEEP
 
@@ -66,12 +66,12 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 1. Buka https://grafana.com/auth/sign-up/create-user
 2. Pilih ikon akun Google untuk Sign Up
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images5.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images5.png)
 
 3. Masuk dengan alamat email dan password Google
 4. Buat stack Grafana baru
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images7.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images7.png)
 
 ### D. Pembuatan Virtual Environment
 
@@ -80,13 +80,13 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 2. Jalankan aplikasi PuTTY
 3. Masukkan IP Raspberry Pi
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images8.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images8.png)
 
 4. Pilih SSH untuk koneksi
 
 5. Masukkan username dan password Raspberry Pi
 
-![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images9.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images9.png)
 
 #### 2. Update Sistem
 ```bash
