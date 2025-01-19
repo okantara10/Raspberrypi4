@@ -179,6 +179,9 @@ python3 -m pip install adafruit-circuitpython-dht
 
 ### G. Kode Program
 
+[read_datadht11.py](read_datadht11.py)
+
+
 ```python
 import os
 import time
