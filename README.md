@@ -31,7 +31,7 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 #### Tabel Koneksi
 | Pin DHT11 | Pin Raspberry Pi |
 |-----------|-----------------|
-| VCC+ | 3.3V |
+| VCC+ | 5V |
 | out | GPIO4 |
 | GND- | GND |
 
