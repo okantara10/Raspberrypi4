@@ -43,6 +43,7 @@ Dalam proyek ini, kami memanfaatkan Raspberry Pi model 4 untuk membaca data suhu
 1. Buka https://cloud.2.influxdata.com/signup
 ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images1.png)
 2. Pilih SIGN UP, kemudian pilih Google
+
 ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images2.png)
 3. Masuk dengan alamat email dan password Google
 4. Buat nama company dan organization
