@@ -1,4 +1,4 @@
-# Visualisasi Data Sensor Suhu dan Kelembapan DHT11 pada Raspberry Pi Menggunakan InfluxDB dan Grafana
+# Visualisasi Data Sensor Suhu dan Kelembapan DHT11 pada Raspberry Pi 4 Menggunakan InfluxDB dan Grafana
 
 Proyek untuk memvisualisasikan data sensor suhu dan kelembapan menggunakan Raspberry Pi, InfluxDB Cloud, dan Grafana Cloud.
 
