@@ -249,7 +249,7 @@ except KeyboardInterrupt:
 5. Checklist field humidity dan temperature
 6. Pastikan query SQL tampil tanpa error
 
-   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images118.png)
+   ![alt text](https://github.com/okantara10/rasberrypi-influxdb-grafanacloud/blob/main/images/images18.png)
 
 8. Pilih RUN untuk melihat data masuk
 
